@@ -117,11 +117,11 @@
   /* ---------- HERO ---------- */
   .hero{
     position:relative;
-    min-height:100svh;
     display:flex;
     flex-direction:column;
     justify-content:center;
     padding-top:88px;
+    padding-bottom:120px;
     overflow:hidden;
     background:
       radial-gradient(ellipse 900px 500px at 15% -10%, #cdeff9 0%, transparent 60%),
@@ -132,17 +132,16 @@
     position:relative; z-index:3;
     max-width:1040px; margin:0 auto; padding:0 28px;
     width:100%;
+  }
+  .hero-text{
     display:grid;
-    grid-template-columns:1.15fr 0.85fr;
-    gap:20px;
-    align-items:center;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:36px;
+    align-items:start;
   }
-  @media (max-width:860px){
-    .hero-content{ grid-template-columns:1fr; }
-    .hero-illust{ order:-1; width:60%; margin:0 auto 10px; }
+  @media (max-width:960px){
+    .hero-text{ grid-template-columns:1fr; gap:28px; }
   }
-  .hero-illust{ position:relative; max-width:340px; margin-left:auto; margin-right:0; }
-  .hero-illust svg{ width:100%; height:auto; }
   .float-slow{ animation: floatY 6s ease-in-out infinite; }
   .float-slow2{ animation: floatY 7.5s ease-in-out infinite; animation-delay:-2s; }
   @keyframes floatY{
@@ -249,6 +248,18 @@
   /* ---------- SECTION GENERIC ---------- */
   section{ padding:110px 0; position:relative; scroll-margin-top:84px; }
   .section-head{ margin-bottom:56px; max-width:640px; }
+  .step-badge{
+    display:inline-block;
+    font-family:'JetBrains Mono', monospace;
+    font-size:0.72rem; font-weight:700;
+    color:var(--surface);
+    background:var(--primary);
+    padding:2px 8px;
+    border-radius:5px;
+    margin-right:8px;
+    letter-spacing:0.05em;
+    vertical-align:middle;
+  }
   .section-head .eyebrow{ display:inline-flex; align-items:center; gap:8px; margin-bottom:14px; }
   .section-head .eyebrow svg{ width:16px; height:16px; flex-shrink:0; }
   .section-head h2{ font-size:clamp(1.8rem, 4vw, 2.5rem); font-weight:700; }
@@ -278,14 +289,12 @@
   .about-grid p:last-child{ margin-bottom:0; }
   .about-illust{ max-width:320px; margin:0 auto 28px; }
   .about-illust svg{ width:100%; height:auto; }
-    background:var(--surface-alt);
-    border-left:4px solid var(--primary);
-    padding:26px 28px;
-    border-radius:0 14px 14px 0;
-    font-family:'Kaisei Decol', serif;
-    font-size:1.1rem;
-    color:var(--primary-deepest);
-    line-height:1.9;
+  .quote-block{
+    padding:0;
+    font-family:'Noto Sans JP', sans-serif;
+    font-size:1rem;
+    color:var(--ink);
+    line-height:1.85;
   }
 
   /* ---------- CAREER TIMELINE ---------- */
@@ -445,10 +454,18 @@
   }
 
   /* ---------- WORKS ---------- */
-  .works-grid{
-    display:grid; grid-template-columns:1.4fr 1fr; gap:24px; align-items:start;
+  .works-label{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:0.78rem; font-weight:700; letter-spacing:0.08em;
+    color:var(--primary-deep);
+    margin:0 0 14px;
   }
-  @media (max-width:800px){ .works-grid{ grid-template-columns:1fr; } }
+  .works-grid{ display:grid; gap:24px; align-items:start; margin-bottom:40px; }
+  .works-grid--wide{ grid-template-columns:repeat(2, 1fr); }
+  .works-grid--tall{ grid-template-columns:repeat(3, 1fr); max-width:720px; }
+  @media (max-width:800px){ .works-grid--wide{ grid-template-columns:1fr; } }
+  @media (max-width:640px){ .works-grid--tall{ grid-template-columns:repeat(2, 1fr); max-width:none; } }
+  @media (max-width:420px){ .works-grid--tall{ grid-template-columns:1fr; } }
   .work-card{
     background:var(--surface);
     border:1px solid var(--line);
@@ -605,6 +622,45 @@
   #toTop.show{ opacity:1; visibility:visible; transform:translateY(0); }
   #toTop:hover{ background:var(--primary-deep); }
   #toTop svg{ width:20px; height:20px; }
+
+  /* ---------- SIDE PROGRESS NAV (desktop only) ---------- */
+  #sideNav{
+    position:fixed;
+    left:auto; right:28px; top:50%; bottom:auto; transform:translateY(-50%);
+    z-index:90;
+    display:flex; flex-direction:column; gap:14px;
+    width:auto;
+    background:none; backdrop-filter:none; border-bottom:none; box-shadow:none;
+  }
+  @media (max-width:1100px){ #sideNav{ display:none; } }
+  #sideNav a{
+    position:relative;
+    display:block;
+    width:10px; height:10px;
+  }
+  #sideNav a span{
+    display:block; width:8px; height:8px; border-radius:50%;
+    background:var(--line);
+    transition:background .2s ease, transform .2s ease;
+  }
+  #sideNav a:hover span{ background:var(--primary); transform:scale(1.3); }
+  #sideNav a.active span{ background:var(--primary); transform:scale(1.3); }
+  #sideNav a::after{
+    content:attr(data-label);
+    position:absolute; right:22px; top:50%; transform:translateY(-50%);
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:0.72rem; font-weight:600;
+    color:var(--primary-deep);
+    background:var(--surface);
+    border:1px solid var(--line);
+    padding:4px 10px;
+    border-radius:6px;
+    white-space:nowrap;
+    opacity:0; pointer-events:none;
+    transition:opacity .2s ease;
+    box-shadow:var(--shadow);
+  }
+  #sideNav a:hover::after{ opacity:1; }
 </style>
 </head>
 <body>
@@ -626,93 +682,40 @@
 
 <header class="hero">
   <div class="hero-content">
-    <div class="live-badge"><span class="live-dot"></span>OPEN TO WORK &nbsp;/&nbsp; 宣伝・PR・動画編集職</div>
-    <h1><ruby>添谷<rt>そえたに</rt></ruby> <ruby>啓佑<rt>けいすけ</rt></ruby></h1>
-    <p class="catch">現場で見てきた熱を、映像とSNSで届ける人へ。</p>
-    <div class="role-tags">
-      <span>動画編集 / Premiere Pro</span>
-      <span>SNS運用・企画</span>
-      <span>イベント企画・運営</span>
-      <span>接客・現場対応</span>
-    </div>
-    <div class="quick-facts">
-      <div class="qf-item">
-        <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="12" rx="2" fill="#2FB6E0"/><path d="M9 8V6.5A2 2 0 0 1 11 4.5h2a2 2 0 0 1 2 2V8" stroke="#2FB6E0" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
-        <div><strong>12年以上</strong><span>接客・現場運営の実務経験</span></div>
+    <div class="hero-text">
+      <div class="hero-text-left">
+        <div class="live-badge"><span class="live-dot"></span>OPEN TO WORK &nbsp;/&nbsp; 宣伝・PR・動画編集職</div>
+        <h1><ruby>添谷<rt>そえたに</rt></ruby> <ruby>啓佑<rt>けいすけ</rt></ruby></h1>
+        <p class="catch">現場で見てきた熱を、映像とSNSで届ける人へ。</p>
+        <div class="hero-meta">
+          <a href="mailto:keisuke.soetani0211@gmail.com">keisuke.soetani0211@gmail.com</a>
+          <a href="tel:09095703909">090-9570-3909</a>
+          <span>東京都在住 / 1987年生まれ</span>
+        </div>
       </div>
-      <div class="qf-item">
-        <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="6" fill="#2FB6E0"/><path d="M9 14 L7 21 L12 18 L17 21 L15 14" fill="#2FB6E0"/></svg>
-        <div><strong>4件</strong><span>保有資格・認定</span></div>
-      </div>
-      <div class="qf-item">
-        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 L14.2 9.2 L21 12 L14.2 14.8 L12 22 L9.8 14.8 L3 12 L9.8 9.2 Z" fill="#FFAD5C"/></svg>
-        <div><strong>100人</strong><span>主催イベント動員実績</span></div>
+      <div class="hero-text-right">
+        <div class="role-tags">
+          <span>動画編集 / Premiere Pro</span>
+          <span>SNS運用・企画</span>
+          <span>イベント企画・運営</span>
+          <span>接客・現場対応</span>
+        </div>
+        <div class="quick-facts">
+          <div class="qf-item">
+            <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="12" rx="2" fill="#2FB6E0"/><path d="M9 8V6.5A2 2 0 0 1 11 4.5h2a2 2 0 0 1 2 2V8" stroke="#2FB6E0" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>
+            <div><strong>12年以上</strong><span>接客・現場運営の実務経験</span></div>
+          </div>
+          <div class="qf-item">
+            <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="9" r="6" fill="#2FB6E0"/><path d="M9 14 L7 21 L12 18 L17 21 L15 14" fill="#2FB6E0"/></svg>
+            <div><strong>4件</strong><span>保有資格・認定</span></div>
+          </div>
+          <div class="qf-item">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 2 L14.2 9.2 L21 12 L14.2 14.8 L12 22 L9.8 14.8 L3 12 L9.8 9.2 Z" fill="#FFAD5C"/></svg>
+            <div><strong>100人</strong><span>主催イベント動員実績</span></div>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="hero-meta">
-      <a href="mailto:keisuke.soetani0211@gmail.com">keisuke.soetani0211@gmail.com</a>
-      <a href="tel:09095703909">090-9570-3909</a>
-      <span>東京都在住 / 1987年生まれ</span>
-    </div>
-  </div>
-
-  <div class="hero-illust" aria-hidden="true">
-    <svg viewBox="0 0 400 400" fill="none">
-      <ellipse cx="200" cy="360" rx="150" ry="16" fill="#DFF5FB"/>
-
-      <!-- monitor -->
-      <rect x="120" y="90" width="200" height="140" rx="12" fill="#FFFFFF" stroke="#0F6E8C" stroke-width="4"/>
-      <rect x="196" y="230" width="8" height="26" fill="#0F6E8C"/>
-      <rect x="168" y="256" width="64" height="10" rx="5" fill="#0F6E8C"/>
-      <!-- screen content: timeline -->
-      <rect x="136" y="106" width="168" height="70" rx="6" fill="#DFF5FB"/>
-      <path d="M195 118 L195 164 L228 141 Z" fill="#2FB6E0"/>
-      <rect x="140" y="190" width="50" height="14" rx="4" fill="#7FD4EC"/>
-      <rect x="196" y="190" width="80" height="14" rx="4" fill="#2FB6E0"/>
-      <rect x="140" y="208" width="90" height="10" rx="4" fill="#FFAD5C"/>
-      <rect x="236" y="208" width="40" height="10" rx="4" fill="#DFF5FB"/>
-
-      <!-- desk -->
-      <rect x="70" y="280" width="260" height="16" rx="4" fill="#0F6E8C"/>
-      <rect x="90" y="296" width="14" height="40" fill="#0A4A5F"/>
-      <rect x="296" y="296" width="14" height="40" fill="#0A4A5F"/>
-
-      <!-- character -->
-      <g class="float-slow">
-        <!-- headphone band -->
-        <path d="M158 262 a42 42 0 0 1 84 0" stroke="#0A4A5F" stroke-width="8" fill="none" stroke-linecap="round"/>
-        <!-- head -->
-        <circle cx="200" cy="270" r="34" fill="#F9D9B8"/>
-        <!-- hair -->
-        <path d="M166 260 a34 34 0 0 1 68 0 q-4 -14 -34 -14 t-34 14 z" fill="#0A4A5F"/>
-        <!-- headphone cups -->
-        <rect x="156" y="258" width="14" height="24" rx="6" fill="#0F6E8C"/>
-        <rect x="230" y="258" width="14" height="24" rx="6" fill="#0F6E8C"/>
-        <!-- face -->
-        <circle cx="190" cy="272" r="3" fill="#0A4A5F"/>
-        <circle cx="212" cy="272" r="3" fill="#0A4A5F"/>
-        <path d="M192 284 q8 6 16 0" stroke="#0A4A5F" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-        <!-- body / hoodie -->
-        <path d="M150 340 q6 -50 50 -50 t50 50 z" fill="#2FB6E0"/>
-        <path d="M180 292 q20 14 40 0 l4 14 q-24 16 -48 0 z" fill="#0A4A5F"/>
-        <!-- arms to keyboard -->
-        <path d="M155 330 q-6 -22 20 -34" stroke="#2FB6E0" stroke-width="16" stroke-linecap="round"/>
-        <path d="M245 330 q6 -22 -20 -34" stroke="#2FB6E0" stroke-width="16" stroke-linecap="round"/>
-        <circle cx="172" cy="298" r="9" fill="#F9D9B8"/>
-        <circle cx="228" cy="298" r="9" fill="#F9D9B8"/>
-        <!-- keyboard -->
-        <rect x="160" y="300" width="80" height="16" rx="4" fill="#FFFFFF" stroke="#BEE9F3" stroke-width="2"/>
-      </g>
-
-      <!-- floating chips -->
-      <g class="float-slow2">
-        <circle cx="336" cy="150" r="24" fill="#FFFFFF" stroke="#0F6E8C" stroke-width="3"/>
-        <path d="M328 150 h16 M336 142 v16" stroke="#0F6E8C" stroke-width="3" stroke-linecap="round"/>
-      </g>
-      <circle cx="66" cy="120" r="7" fill="#FFAD5C"/>
-      <circle cx="86" cy="150" r="4" fill="#2FB6E0"/>
-      <circle cx="340" cy="230" r="6" fill="#7FD4EC"/>
-    </svg>
   </div>
 
   <div class="waves" aria-hidden="true">
@@ -725,7 +728,7 @@
 <section id="about">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="currentColor"/><path d="M4 21c1.2-4.2 4.8-6.5 8-6.5s6.8 2.3 8 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>About</span>
+      <span class="step-badge">01</span><span class="eyebrow"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="currentColor"/><path d="M4 21c1.2-4.2 4.8-6.5 8-6.5s6.8 2.3 8 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>About</span>
       <h2>表舞台を、うしろから支える。</h2>
     </div>
     <div class="about-grid">
@@ -779,7 +782,7 @@
 <section id="career">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="12" rx="2" fill="currentColor"/><path d="M9 8V6.5A2 2 0 0 1 11 4.5h2a2 2 0 0 1 2 2V8" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>History</span>
+      <span class="step-badge">02</span><span class="eyebrow"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="8" width="18" height="12" rx="2" fill="currentColor"/><path d="M9 8V6.5A2 2 0 0 1 11 4.5h2a2 2 0 0 1 2 2V8" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg>History</span>
       <h2>これまでの歩み</h2>
       <p>1987年の誕生から現在まで。学生時代のきっかけから学歴・職歴・資格まで、年代順にまとめました。</p>
       <div class="legend">
@@ -1045,7 +1048,7 @@
 <section id="project">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 L14.5 9 L21 10 L16 14.3 L17.5 21 L12 17.5 L6.5 21 L8 14.3 L3 10 L9.5 9 Z" fill="currentColor"/></svg>Self Project</span>
+      <span class="step-badge">03</span><span class="eyebrow"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 L14.5 9 L21 10 L16 14.3 L17.5 21 L12 17.5 L6.5 21 L8 14.3 L3 10 L9.5 9 Z" fill="currentColor"/></svg>Self Project</span>
       <h2 class="nowrap-title">自主企画：インフルエンサー音楽イベント</h2>
       <p>プロデュースからSNS告知、当日運営、生配信までを一人で企画・統括した自主プロジェクト。</p>
     </div>
@@ -1111,11 +1114,12 @@
 <section id="works">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l5 3-5 3V9z" fill="currentColor"/></svg>Works</span>
+      <span class="step-badge">04</span><span class="eyebrow"><svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M10 9l5 3-5 3V9z" fill="currentColor"/></svg>Works</span>
       <h2>作品ポートフォリオ</h2>
       <p>Premiere Proでの動画編集と、Photoshopでの画像制作サンプルです。</p>
     </div>
-    <div class="works-grid">
+    <div class="works-label reveal">ロング動画</div>
+    <div class="works-grid works-grid--wide">
       <div class="work-card reveal">
         <div class="work-frame work-frame--wide">
           <iframe src="https://www.youtube.com/embed/HHUZsKHoT3s?si=osrgDUTLHffd-Ipq" title="動画編集ポートフォリオ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
@@ -1127,6 +1131,20 @@
         </div>
       </div>
       <div class="work-card reveal">
+        <div class="work-frame work-frame--wide">
+          <iframe src="https://www.youtube.com/embed/F3eHSNmCulk?si=MzTvjD71ltAk0YQC" title="カラオケ風動画" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="work-meta">
+          <span class="work-tag">歌詞テロップ</span>
+          <h3>カラオケ風動画</h3>
+          <p>歌詞テロップを曲に合わせて表示するカラオケ風編集。タイミング調整とテロップデザインを担当。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="works-label reveal">ショート動画</div>
+    <div class="works-grid works-grid--tall">
+      <div class="work-card reveal">
         <div class="work-frame work-frame--tall">
           <iframe src="https://www.youtube.com/embed/IjjnnbvkVPs?si=KWFxW_sI5u-ItfLk" title="vログ系ショート動画" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
         </div>
@@ -1136,7 +1154,18 @@
           <p>テンポ設計を意識したショート動画。視聴維持率を意識した編集を実践。</p>
         </div>
       </div>
+      <div class="work-card reveal">
+        <div class="work-frame work-frame--tall">
+          <iframe src="https://www.youtube.com/embed/de2nB3bwcgU?si=3KdVImPx_QgMZiyg" title="断捨離しないデメリットベスト5" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+        </div>
+        <div class="work-meta">
+          <span class="work-tag">SHORTS</span>
+          <h3>断捨離しないデメリットベスト5</h3>
+          <p>ランキング形式のショート動画。テンポよく要点を伝える構成とテロップ表現を意識。</p>
+        </div>
+      </div>
     </div>
+
 
     <div class="works-sub reveal">
       <span class="work-tag">画像制作 / Photoshop</span>
@@ -1199,7 +1228,7 @@
 <section id="skills">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none"><path d="M14.5 3.5 L20.5 9.5 L9.5 20.5 L3.5 20.5 L3.5 14.5 Z M13 5 L19 11" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Skills</span>
+      <span class="step-badge">05</span><span class="eyebrow"><svg viewBox="0 0 24 24" fill="none"><path d="M14.5 3.5 L20.5 9.5 L9.5 20.5 L3.5 20.5 L3.5 14.5 Z M13 5 L19 11" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Skills</span>
       <h2>できること</h2>
     </div>
     <div class="skill-grid">
@@ -1310,7 +1339,7 @@
 <section id="contact">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="eyebrow"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12 L21 4 L15 21 L11 13 L3 12Z" fill="currentColor"/></svg>Contact</span>
+      <span class="step-badge">06</span><span class="eyebrow"><svg viewBox="0 0 24 24" fill="none"><path d="M3 12 L21 4 L15 21 L11 13 L3 12Z" fill="currentColor"/></svg>Contact</span>
       <h2>ご連絡はこちらから</h2>
       <p>作品やイベントの魅力を届ける仕事に、現場経験と制作スキルを活かして貢献したいと考えています。ご連絡お待ちしております。</p>
     </div>
@@ -1333,6 +1362,15 @@
 <button id="toTop" aria-label="トップへ戻る">
   <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M12 5L6 11M12 5L18 11" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
+
+<nav id="sideNav" aria-label="ページ内ナビゲーション">
+  <a href="#about" data-section="about" data-label="About"><span></span></a>
+  <a href="#career" data-section="career" data-label="History"><span></span></a>
+  <a href="#project" data-section="project" data-label="Project"><span></span></a>
+  <a href="#works" data-section="works" data-label="Works"><span></span></a>
+  <a href="#skills" data-section="skills" data-label="Skills"><span></span></a>
+  <a href="#contact" data-section="contact" data-label="Contact"><span></span></a>
+</nav>
 
 <script>
   // scroll progress bar
@@ -1403,6 +1441,7 @@
   // scrollspy: highlight the nav chip matching the section in view
   const navLinks = document.querySelectorAll('.nav-links a');
   const navLinksRow = document.querySelector('.nav-links');
+  const sideNavLinks = document.querySelectorAll('#sideNav a');
   const sections = ['about','career','project','works','skills','contact']
     .map(id => document.getElementById(id))
     .filter(Boolean);
@@ -1412,6 +1451,7 @@
       if(entry.isIntersecting){
         const id = entry.target.id;
         navLinks.forEach(a => a.classList.toggle('active', a.dataset.section === id));
+        sideNavLinks.forEach(a => a.classList.toggle('active', a.dataset.section === id));
         const activeLink = document.querySelector('.nav-links a.active');
         if(activeLink && navLinksRow){
           const rowRect = navLinksRow.getBoundingClientRect();
@@ -1425,6 +1465,17 @@
   }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
 
   sections.forEach(sec => spy.observe(sec));
+
+  // side nav: smooth-scroll without touching the URL/hash
+  sideNavLinks.forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = document.getElementById(link.dataset.section);
+      if(target){
+        target.scrollIntoView({ behavior:'smooth', block:'start' });
+      }
+    });
+  });
 </script>
 
 </body>
