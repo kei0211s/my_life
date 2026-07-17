@@ -296,6 +296,25 @@
     color:var(--ink);
     line-height:1.85;
   }
+  @media (min-width:801px){
+    .quote-block{ margin-top:288px; }
+  }
+
+  .about-cta{ margin-top:52px; text-align:center; }
+  .cta-button{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-weight:700; font-size:0.95rem;
+    color:#fff;
+    background:var(--primary);
+    padding:14px 30px;
+    border-radius:999px;
+    box-shadow:var(--shadow);
+    transition:background .2s ease, transform .2s ease;
+  }
+  .cta-button svg{ width:18px; height:18px; transition:transform .2s ease; }
+  .cta-button:hover{ background:var(--primary-deep); transform:translateY(-2px); }
+  .cta-button:hover svg{ transform:translateX(4px); }
 
   /* ---------- CAREER TIMELINE ---------- */
   .timeline{ position:relative; margin-top:10px; }
@@ -508,6 +527,7 @@
   .thumb-item img{
     width:100%; aspect-ratio:16/9; object-fit:cover; display:block;
     transition:transform .35s ease;
+    cursor:zoom-in;
   }
   .thumb-item:hover img{ transform:scale(1.05); }
   .thumb-item figcaption{
@@ -516,6 +536,40 @@
     font-size:0.8rem; font-weight:500;
     color:var(--primary-deep);
   }
+
+  /* ---------- LIGHTBOX ---------- */
+  .lightbox{
+    position:fixed; inset:0; z-index:200;
+    background:rgba(10,30,38,0.88);
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:16px; padding:40px 20px;
+    opacity:0; visibility:hidden;
+    transition:opacity .25s ease, visibility .25s ease;
+  }
+  .lightbox.show{ opacity:1; visibility:visible; }
+  .lightbox img{
+    max-width:min(900px, 92vw); max-height:78vh;
+    width:auto; height:auto;
+    border-radius:12px;
+    box-shadow:0 20px 60px -20px rgba(0,0,0,0.6);
+    transform:scale(0.96);
+    transition:transform .25s ease;
+  }
+  .lightbox.show img{ transform:scale(1); }
+  .lightbox-caption{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:0.9rem; color:#EAF6FA;
+  }
+  .lightbox-close{
+    position:absolute; top:24px; right:24px;
+    width:42px; height:42px; border-radius:50%;
+    background:rgba(255,255,255,0.12);
+    border:none; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    transition:background .2s ease;
+  }
+  .lightbox-close:hover{ background:rgba(255,255,255,0.22); }
+  .lightbox-close svg{ width:18px; height:18px; }
 
   /* ---------- SKILLS ---------- */
   .skill-grid{
@@ -775,6 +829,12 @@
         ——「その場にいる人の気持ちを、想像すること。」<br><br>
         その視点を、映像とSNSという届け方に載せていきたいです。
       </div>
+    </div>
+    <div class="about-cta reveal">
+      <a href="#works" class="cta-button">
+        <span>ポートフォリオはこちら</span>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -1132,7 +1192,7 @@
       </div>
       <div class="work-card reveal">
         <div class="work-frame work-frame--wide">
-          <iframe src="https://youtu.be/uTAYbFIuN7A?si=n1PVbnOOFbmuUSdM" title="カラオケ風動画" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
+          <iframe src="https://www.youtube.com/embed/uTAYbFIuN7A?si=YZVa13lbTgK1sEiy" title="カラオケ風動画" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
         </div>
         <div class="work-meta">
           <span class="work-tag">歌詞テロップ</span>
@@ -1359,6 +1419,14 @@
   <footer>© 2026 Keisuke Soetani</footer>
 </section>
 
+<div id="lightbox" class="lightbox">
+  <button id="lightboxClose" class="lightbox-close" aria-label="閉じる">
+    <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>
+  </button>
+  <img id="lightboxImg" src="" alt="">
+  <p id="lightboxCaption" class="lightbox-caption"></p>
+</div>
+
 <button id="toTop" aria-label="トップへ戻る">
   <svg viewBox="0 0 24 24" fill="none"><path d="M12 19V5M12 5L6 11M12 5L18 11" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
 </button>
@@ -1418,6 +1486,39 @@
         target.scrollIntoView({ behavior:'smooth', block:'start' });
       }
     });
+  });
+
+  // lightbox for gallery thumbnails
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+  const lightboxCaption = document.getElementById('lightboxCaption');
+  const lightboxClose = document.getElementById('lightboxClose');
+
+  function openLightbox(src, caption){
+    lightboxImg.src = src;
+    lightboxCaption.textContent = caption || '';
+    lightbox.classList.add('show');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(){
+    lightbox.classList.remove('show');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.thumb-item').forEach(item => {
+    const img = item.querySelector('img');
+    const caption = item.querySelector('figcaption');
+    if(img){
+      img.addEventListener('click', () => openLightbox(img.src, caption ? caption.textContent : ''));
+    }
+  });
+
+  lightboxClose.addEventListener('click', closeLightbox);
+  lightbox.addEventListener('click', (e) => {
+    if(e.target === lightbox){ closeLightbox(); }
+  });
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){ closeLightbox(); }
   });
 
   // timeline filter chips
