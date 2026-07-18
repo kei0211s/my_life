@@ -283,21 +283,37 @@
 
   /* ---------- ABOUT ---------- */
   #about{ background:var(--surface); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
-  .about-grid{ display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
-  @media (max-width:800px){ .about-grid{ grid-template-columns:1fr; } }
+  .about-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    grid-template-areas:
+      "illust illust"
+      "text quote";
+    column-gap:60px;
+    row-gap:28px;
+    align-items:start;
+  }
+  @media (max-width:800px){
+    .about-grid{
+      grid-template-columns:1fr;
+      grid-template-areas:
+        "illust"
+        "text"
+        "quote";
+    }
+  }
   .about-grid p{ margin-bottom:18px; color:var(--ink); }
   .about-grid p:last-child{ margin-bottom:0; }
-  .about-illust{ max-width:320px; margin:0 auto 28px; }
+  .about-illust{ grid-area:illust; max-width:320px; margin:0 auto; }
   .about-illust svg{ width:100%; height:auto; }
+  .about-text{ grid-area:text; }
   .quote-block{
+    grid-area:quote;
     padding:0;
     font-family:'Noto Sans JP', sans-serif;
     font-size:1rem;
     color:var(--ink);
     line-height:1.85;
-  }
-  @media (min-width:801px){
-    .quote-block{ margin-top:288px; }
   }
 
   .about-cta{ margin-top:52px; text-align:center; }
@@ -480,7 +496,7 @@
     margin:0 0 14px;
   }
   .works-grid{ display:grid; gap:24px; align-items:start; margin-bottom:40px; }
-  .works-grid--wide{ grid-template-columns:repeat(2, 1fr); }
+  .works-grid--wide{ grid-template-columns:minmax(0, 640px); justify-content:center; }
   .works-grid--tall{ grid-template-columns:repeat(3, 1fr); max-width:720px; }
   @media (max-width:800px){ .works-grid--wide{ grid-template-columns:1fr; } }
   @media (max-width:640px){ .works-grid--tall{ grid-template-columns:repeat(2, 1fr); max-width:none; } }
@@ -786,40 +802,40 @@
       <h2>表舞台を、うしろから支える。</h2>
     </div>
     <div class="about-grid">
-      <div class="reveal">
-        <div class="about-illust">
-          <svg viewBox="0 0 320 260" fill="none">
-            <ellipse cx="160" cy="240" rx="130" ry="14" fill="#DFF5FB"/>
-            <!-- stage -->
-            <rect x="40" y="200" width="240" height="30" rx="6" fill="#DFF5FB"/>
-            <!-- spotlight beam -->
-            <path d="M60 30 L150 195 L230 195 Z" fill="#EAF9FC"/>
-            <!-- mic stand on stage -->
-            <rect x="187" y="150" width="6" height="50" fill="#0F6E8C"/>
-            <circle cx="190" cy="140" r="14" fill="#0A4A5F"/>
-            <rect x="168" y="196" width="44" height="6" rx="3" fill="#0F6E8C"/>
+      <div class="about-illust reveal">
+        <svg viewBox="0 0 320 260" fill="none">
+          <ellipse cx="160" cy="240" rx="130" ry="14" fill="#DFF5FB"/>
+          <!-- stage -->
+          <rect x="40" y="200" width="240" height="30" rx="6" fill="#DFF5FB"/>
+          <!-- spotlight beam -->
+          <path d="M60 30 L150 195 L230 195 Z" fill="#EAF9FC"/>
+          <!-- mic stand on stage -->
+          <rect x="187" y="150" width="6" height="50" fill="#0F6E8C"/>
+          <circle cx="190" cy="140" r="14" fill="#0A4A5F"/>
+          <rect x="168" y="196" width="44" height="6" rx="3" fill="#0F6E8C"/>
 
-            <!-- spotlight fixture -->
-            <g>
-              <rect x="34" y="14" width="40" height="26" rx="6" fill="#2FB6E0" transform="rotate(28 54 27)"/>
-              <circle cx="60" cy="30" r="9" fill="#FFAD5C"/>
-            </g>
+          <!-- spotlight fixture -->
+          <g>
+            <rect x="34" y="14" width="40" height="26" rx="6" fill="#2FB6E0" transform="rotate(28 54 27)"/>
+            <circle cx="60" cy="30" r="9" fill="#FFAD5C"/>
+          </g>
 
-            <!-- character adjusting spotlight -->
-            <g class="float-slow">
-              <circle cx="70" cy="90" r="22" fill="#F9D9B8"/>
-              <path d="M48 84 a22 22 0 0 1 44 0 q-3 -10 -22 -10 t-22 10z" fill="#0A4A5F"/>
-              <circle cx="63" cy="92" r="2.4" fill="#0A4A5F"/>
-              <circle cx="79" cy="90" r="2.4" fill="#0A4A5F"/>
-              <path d="M64 100 q6 4 12 -1" stroke="#0A4A5F" stroke-width="2" fill="none" stroke-linecap="round"/>
-              <path d="M45 150 q4 -38 25 -38 t25 38 z" fill="#0F6E8C"/>
-              <path d="M55 118 q-14 -30 5 -46" stroke="#0F6E8C" stroke-width="12" stroke-linecap="round"/>
-              <circle cx="58" cy="71" r="8" fill="#F9D9B8"/>
-              <path d="M85 118 q10 -18 0 -30" stroke="#0F6E8C" stroke-width="12" stroke-linecap="round"/>
-              <circle cx="86" cy="86" r="8" fill="#F9D9B8"/>
-            </g>
-          </svg>
-        </div>
+          <!-- character adjusting spotlight -->
+          <g class="float-slow">
+            <circle cx="70" cy="90" r="22" fill="#F9D9B8"/>
+            <path d="M48 84 a22 22 0 0 1 44 0 q-3 -10 -22 -10 t-22 10z" fill="#0A4A5F"/>
+            <circle cx="63" cy="92" r="2.4" fill="#0A4A5F"/>
+            <circle cx="79" cy="90" r="2.4" fill="#0A4A5F"/>
+            <path d="M64 100 q6 4 12 -1" stroke="#0A4A5F" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M45 150 q4 -38 25 -38 t25 38 z" fill="#0F6E8C"/>
+            <path d="M55 118 q-14 -30 5 -46" stroke="#0F6E8C" stroke-width="12" stroke-linecap="round"/>
+            <circle cx="58" cy="71" r="8" fill="#F9D9B8"/>
+            <path d="M85 118 q10 -18 0 -30" stroke="#0F6E8C" stroke-width="12" stroke-linecap="round"/>
+            <circle cx="86" cy="86" r="8" fill="#F9D9B8"/>
+          </g>
+        </svg>
+      </div>
+      <div class="about-text reveal">
         <p>専門学校で声優を目指して学んだのち、表舞台に立つ人を支える仕事にやりがいを感じるようになりました。以来、アニメ関連企業の店舗運営やイベント現場、警備・誘導といった仕事を通じて、作品やファンの方々に寄り添う姿勢を培ってきました。</p>
         <p>並行して、インフルエンサーのプロデュースやライブイベントの企画・運営、SNS運用、Premiere Proを使った動画制作にも自主的に取り組み、告知から当日運営、編集・投稿までを一通り経験しています。</p>
         <p>2026年3月には東京都立の職業能力開発センターでメディアプロモーションを学び、現場感覚と実務スキルの両方を武器に、次は宣伝・PRという立場から作品の魅力を発信する仕事に挑戦したいと考えています。</p>
@@ -1188,16 +1204,6 @@
           <span class="work-tag">動画編集ポートフォリオ</span>
           <h3>動画編集ポートフォリオ</h3>
           <p>カット編集・テロップ・BGM/SEを組み合わせた編集サンプル集。</p>
-        </div>
-      </div>
-      <div class="work-card reveal">
-        <div class="work-frame work-frame--wide">
-          <iframe src="https://www.youtube.com/embed/uTAYbFIuN7A?si=YZVa13lbTgK1sEiy" title="カラオケ風動画" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <div class="work-meta">
-          <span class="work-tag">歌詞テロップ</span>
-          <h3>カラオケ風動画</h3>
-          <p>歌詞テロップを曲に合わせて表示するカラオケ風編集。タイミング調整とテロップデザインを担当。</p>
         </div>
       </div>
     </div>
