@@ -488,6 +488,42 @@
   }
   .stat .label{ font-size:0.8rem; color:var(--muted); margin-top:4px; }
   .project-desc{ color:var(--ink); margin-top:8px; }
+
+  .project-sub{ margin-top:36px; padding-top:28px; border-top:1px solid var(--line); }
+  .project-sub-title{
+    font-family:'Kaisei Decol', serif;
+    font-size:1.15rem; font-weight:700;
+    color:var(--primary-deepest);
+    margin-bottom:18px;
+  }
+  .task-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:28px 32px;
+  }
+  @media (max-width:640px){ .task-grid{ grid-template-columns:1fr; } }
+  .task-group h4{
+    font-family:'Zen Kaku Gothic New', sans-serif;
+    font-size:0.85rem; font-weight:700;
+    color:var(--primary-deep);
+    margin-bottom:10px;
+    display:inline-block;
+    background:var(--surface-alt);
+    padding:4px 12px;
+    border-radius:999px;
+  }
+  .task-group .skill-list{ margin-top:4px; }
+  .task-group .skill-list li{ font-size:0.86rem; }
+
+  .insight-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:14px;
+  }
+  @media (max-width:640px){ .insight-grid{ grid-template-columns:1fr; } }
+  .insight-card{
+    background:var(--surface-alt);
+    border-radius:12px;
+    padding:16px 18px;
+  }
+  .insight-card p{ font-size:0.88rem; color:var(--ink); line-height:1.7; }
+
   .chip-row{ display:flex; flex-wrap:wrap; gap:8px; margin-top:24px; }
   .chip-row span{
     font-family:'Zen Kaku Gothic New', sans-serif; font-size:0.76rem; font-weight:500;
@@ -1131,8 +1167,8 @@
   <div class="wrap">
     <div class="section-head reveal">
       <span class="step-badge">03</span><span class="eyebrow"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3 L14.5 9 L21 10 L16 14.3 L17.5 21 L12 17.5 L6.5 21 L8 14.3 L3 10 L9.5 9 Z" fill="currentColor"/></svg>Self Project</span>
-      <h2 class="nowrap-title">自主企画：インフルエンサー音楽イベント</h2>
-      <p>プロデュースからSNS告知、当日運営、生配信までを一人で企画・統括した自主プロジェクト。</p>
+      <h2>インフルエンサーライブイベント</h2>
+      <p>企画・制作・運営｜2018年9月</p>
     </div>
     <div class="project-card reveal">
       <div class="project-illust">
@@ -1175,19 +1211,90 @@
           <circle cx="380" cy="35" r="4" fill="#2FB6E0"/>
         </svg>
       </div>
-      <p class="project-desc">100人収容のライブハウスにて、インフルエンサー10名による音楽イベントを企画から中心となって運営。SNSでの事前告知やフライヤー制作、生配信企画までを一貫して手がけ、満員での開催を実現しました。</p>
+      <p class="project-desc">企画立案から集客、制作進行、当日運営、終演後の精算まで、一連のイベント運営を担当。出演者・ライブハウス・イラストレーター・運営スタッフと連携し、イベント全体の進行管理を行いました。</p>
       <div class="project-stats">
         <div class="stat"><svg class="stat-icon" viewBox="0 0 24 24" fill="none"><path d="M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" fill="#2FB6E0"/><path d="M3 20c.8-3.6 3-5.5 6-5.5s5.2 1.9 6 5.5" stroke="#2FB6E0" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M16 8.2a2.6 2.6 0 1 0 0-5.2" stroke="#7FD4EC" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M15 14.3c2.4.4 3.9 2 4.6 5.2" stroke="#7FD4EC" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg><div class="num">100</div><div class="label">収容人数のライブハウス</div></div>
         <div class="stat"><svg class="stat-icon" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" fill="#2FB6E0"/><path d="M6 11a6 6 0 0 0 12 0" stroke="#2FB6E0" stroke-width="1.8" fill="none" stroke-linecap="round"/><path d="M12 17v4M9 21h6" stroke="#2FB6E0" stroke-width="1.8" stroke-linecap="round"/></svg><div class="num">10</div><div class="label">出演インフルエンサー数</div></div>
         <div class="stat"><svg class="stat-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#FFAD5C"/><path d="M8 12.5l2.5 2.5L16 9.5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg><div class="num mono">SOLD OUT</div><div class="label">満員での開催を達成</div></div>
       </div>
+
+      <div class="project-sub">
+        <h3 class="project-sub-title">担当業務</h3>
+        <div class="task-grid">
+          <div class="task-group">
+            <h4>企画・準備</h4>
+            <ul class="skill-list">
+              <li>ライブイベントの企画立案・コンセプト設計</li>
+              <li>運営メンバーの募集・チーム立ち上げ</li>
+              <li>出演料・チケットバックの相場調査</li>
+              <li>ライブハウスのリサーチ・現地下見・会場選定</li>
+              <li>出演者への出演依頼・スケジュール調整</li>
+              <li>出演者の希望楽曲をヒアリングし、重複しないよう調整</li>
+              <li>出演者全員で歌う楽曲を企画・構成</li>
+              <li>イベント全体のタイムテーブルを作成・進行設計</li>
+            </ul>
+          </div>
+          <div class="task-group">
+            <h4>告知・制作</h4>
+            <ul class="skill-list">
+              <li>フライヤー制作をディレクション（イラストレーター依頼、ロゴ・出演順・日時・会場・テーマカラー・出演者カラーなどの制作指示、印刷手配）</li>
+              <li>X（旧Twitter）でのイベント告知を企画・運用</li>
+              <li>フライヤー画像や告知動画を活用した情報発信</li>
+              <li>出演者を招いたラジオ形式の告知配信を企画・進行</li>
+              <li>告知配信の構成・台本を作成</li>
+              <li>レンタルスタジオを手配し、約3回のリハーサルを実施</li>
+            </ul>
+          </div>
+          <div class="task-group">
+            <h4>当日運営</h4>
+            <ul class="skill-list">
+              <li>本番当日は会場入り前に最終リハーサルを実施</li>
+              <li>運営スタッフの役割分担・配置を計画</li>
+              <li>ライブハウス・音響・照明スタッフと打ち合わせ、タイムテーブルや演出内容を共有</li>
+              <li>出演者ごとの照明カラーを指定し、演出を調整</li>
+              <li>イベント冒頭で開会の挨拶を担当</li>
+            </ul>
+          </div>
+          <div class="task-group">
+            <h4>精算・事後対応</h4>
+            <ul class="skill-list">
+              <li>終演後、ライブハウスとの精算対応</li>
+              <li>出演者へのチケットバック対応</li>
+              <li>終演後、Googleフォームを使用した来場者アンケートを作成・実施</li>
+              <li>QRコード付きアンケートを来場者へ配布し、回答を収集</li>
+              <li>満足度や各出演者・イベント内容を5段階評価で集計し、次回開催に向けた改善点の把握に活用</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-sub">
+        <h3 class="project-sub-title">工夫したこと</h3>
+        <div class="insight-grid">
+          <div class="insight-card">
+            <p>出演者それぞれの個性が伝わるよう、告知配信の内容や進行を企画し、台本を作成しました。</p>
+          </div>
+          <div class="insight-card">
+            <p>イベント全体の一体感を演出するため、出演者全員で歌う企画を提案・構成しました。</p>
+          </div>
+          <div class="insight-card">
+            <p>フライヤーではテーマカラーや出演者ごとのイメージカラーを設定し、世界観を統一しました。</p>
+          </div>
+          <div class="insight-card">
+            <p>会場・出演者・運営スタッフと密に連携し、企画から本番までスムーズな進行を実現しました。</p>
+          </div>
+        </div>
+      </div>
+
       <p class="project-desc">開催後のアンケートでは高い満足度評価を獲得。企画力・集客力・現場運営力を実践の中で培いました。</p>
       <div class="chip-row">
-        <span>SNS企画立案</span>
+        <span>企画立案</span>
+        <span>キャスティング</span>
         <span>フライヤー制作</span>
+        <span>SNS告知</span>
         <span>生配信 / OBS</span>
         <span>当日運営統括</span>
-        <span>Premiere Pro 編集</span>
+        <span>精算対応</span>
       </div>
     </div>
   </div>
