@@ -28,6 +28,9 @@
     --muted:#5D7A85;
     --accent-warm:#FFAD5C;
     --accent-creative:#8B7FD6;
+    --accent-work:#2E9E8F;
+    --accent-qualification:#D9A441;
+    --accent-credit:#D6668B;
     --line:#CFE9F1;
     --shadow: 0 12px 30px -12px rgba(15,110,140,0.25);
   }
@@ -516,6 +519,46 @@
   .tag.tag-creative{ background:#EFEBFB; color:#5B4FA8; }
   .t-item.is-creative .t-dot{ background:var(--accent-creative); }
 
+  /* category color-coding by data-type */
+  .t-item[data-type="EDUCATION"] .t-body{
+    border-left:4px solid var(--primary);
+  }
+  .t-item[data-type="WORK"] .t-dot{ background:var(--accent-work); }
+  .t-item[data-type="WORK"] .tag{ background:#E4F3F1; color:#1F6E63; }
+  .t-item[data-type="WORK"] .t-body{
+    background:#EDF8F6;
+    border-color:#CDE9E3;
+    border-left:4px solid var(--accent-work);
+    box-shadow:none;
+  }
+  .t-item[data-type="QUALIFICATION"] .t-dot{ background:var(--accent-qualification); }
+  .t-item[data-type="QUALIFICATION"] .tag{ background:#FBF1DE; color:#9A6B1E; }
+  .t-item[data-type="QUALIFICATION"] .t-body{
+    background:#FDF6E9;
+    border-color:#F3E4C0;
+    border-left:4px solid var(--accent-qualification);
+    box-shadow:none;
+  }
+  .t-item[data-type="CREDIT"] .t-dot{ background:var(--accent-credit); }
+  .t-item[data-type="CREDIT"] .tag{ background:#FAE7EE; color:#A6435F; }
+  .t-item[data-type="CREDIT"] .t-body{
+    background:#FDF0F4;
+    border-color:#F5D4E0;
+    border-left:4px solid var(--accent-credit);
+    box-shadow:none;
+  }
+  .t-item.is-creative .t-body{
+    background:#F5F2FC;
+    border-color:#DDD5F2;
+    border-left:4px solid var(--accent-creative);
+    box-shadow:none;
+  }
+  .t-item.is-milestone .t-body{ border-left:4px solid var(--accent-warm); }
+  .t-item[data-type="WORK"] .t-body .note{ border-top:1px dashed #CDE9E3; }
+  .t-item[data-type="QUALIFICATION"] .t-body .note{ border-top:1px dashed #F3E4C0; }
+  .t-item[data-type="CREDIT"] .t-body .note{ border-top:1px dashed #F5D4E0; }
+  .t-item.is-creative .t-body .note{ border-top:1px dashed #DDD5F2; }
+
   /* ---------- PROJECT SPOTLIGHT ---------- */
   #project{
     background:linear-gradient(180deg, var(--surface-alt), var(--bg));
@@ -970,9 +1013,9 @@
       <p class="nowrap-desc">1987年の誕生から現在まで。学生時代のきっかけから学歴・職歴・資格まで、年代順にまとめました。</p>
       <div class="legend">
         <span class="legend-item"><span class="legend-icon" style="background:var(--primary)"><svg viewBox="0 0 24 24"><path d="M12 3 L22 8 L12 13 L2 8 Z" fill="#fff"/></svg></span>学歴</span>
-        <span class="legend-item"><span class="legend-icon" style="background:var(--primary)"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2" fill="#fff"/></svg></span>職歴</span>
-        <span class="legend-item"><span class="legend-icon" style="background:var(--primary)"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6" fill="#fff"/><path d="M9 14 L7 21 L12 18 L17 21 L15 14" fill="#fff"/></svg></span>資格</span>
-        <span class="legend-item"><span class="legend-icon" style="background:var(--primary)"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" fill="#fff"/><path d="M6 11 a6 6 0 0 0 12 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span>声のお仕事</span>
+        <span class="legend-item"><span class="legend-icon" style="background:var(--accent-work)"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2" fill="#fff"/></svg></span>職歴</span>
+        <span class="legend-item"><span class="legend-icon" style="background:var(--accent-qualification)"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6" fill="#fff"/><path d="M9 14 L7 21 L12 18 L17 21 L15 14" fill="#fff"/></svg></span>資格</span>
+        <span class="legend-item"><span class="legend-icon" style="background:var(--accent-credit)"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3" fill="#fff"/><path d="M6 11 a6 6 0 0 0 12 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/></svg></span>声のお仕事</span>
         <span class="legend-item"><span class="legend-icon" style="background:var(--accent-warm)"><svg viewBox="0 0 24 24"><path d="M12 2 L14.2 9.2 L21 12 L14.2 14.8 L12 22 L9.8 14.8 L3 12 L9.8 9.2 Z" fill="#fff"/></svg></span>人生の転機</span>
         <span class="legend-item"><span class="legend-icon" style="background:var(--accent-creative)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="#fff" stroke-width="1.6"/><circle cx="9" cy="9.5" r="1.3" fill="#fff"/><circle cx="14.5" cy="8.5" r="1.3" fill="#fff"/><circle cx="16" cy="13.5" r="1.3" fill="#fff"/><path d="M8 14 a3 3 0 0 0 5.5 1.6" stroke="#fff" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg></span>Creative Projects</span>
       </div>
@@ -1112,23 +1155,23 @@
         </div>
       </div>
 
-      <div class="t-item reveal" data-type="WORK">
+      <div class="t-item reveal is-creative" data-type="CREATIVE">
         <div class="t-date">2015.08<br>–2016.02頃<span class="t-age">28歳</span></div>
-        <div class="t-dot"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2" fill="#fff"/><path d="M9 8 V6.5 A2 2 0 0 1 11 4.5 H13 A2 2 0 0 1 15 6.5 V8" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="t-dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="9" cy="9.5" r="1.4" fill="#fff"/><circle cx="14.5" cy="8.5" r="1.4" fill="#fff"/><circle cx="16" cy="13.5" r="1.4" fill="#fff"/><path d="M8 14 a3 3 0 0 0 5.5 1.6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div>
         <div class="t-body">
-          <span class="tag"><svg class="tag-icon" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2" fill="currentColor"/><path d="M9 8 V6.5 A2 2 0 0 1 11 4.5 H13 A2 2 0 0 1 15 6.5 V8" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/><rect x="3" y="12.5" width="18" height="2.4" fill="#F3FAFC"/></svg>WORK</span>
-          <h3>インフルエンサーグループのお手伝い</h3>
+          <span class="tag tag-creative"><svg class="tag-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="9.5" r="1.3" fill="currentColor"/><circle cx="14.5" cy="8.5" r="1.3" fill="currentColor"/><circle cx="16" cy="13.5" r="1.3" fill="currentColor"/><path d="M8 14 a3 3 0 0 0 5.5 1.6" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>CREATIVE PROJECTS</span>
+          <h3>インフルエンサーグループのサポート</h3>
           <div class="role">運営サポート（約半年間）</div>
           <p class="note">インフルエンサーグループの運営を約半年間サポート。SNSでの発信やイベント運営に触れ、のちの自主プロジェクトへの入口となる経験。</p>
         </div>
       </div>
 
-      <div class="t-item reveal" data-type="WORK">
+      <div class="t-item reveal is-creative" data-type="CREATIVE">
         <div class="t-date">2017.12<br>–2019.09<span class="t-age">30歳</span></div>
-        <div class="t-dot"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2" fill="#fff"/><path d="M9 8 V6.5 A2 2 0 0 1 11 4.5 H13 A2 2 0 0 1 15 6.5 V8" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="t-dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="9" cy="9.5" r="1.4" fill="#fff"/><circle cx="14.5" cy="8.5" r="1.4" fill="#fff"/><circle cx="16" cy="13.5" r="1.4" fill="#fff"/><path d="M8 14 a3 3 0 0 0 5.5 1.6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div>
         <div class="t-body">
-          <span class="tag"><svg class="tag-icon" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2" fill="currentColor"/><path d="M9 8 V6.5 A2 2 0 0 1 11 4.5 H13 A2 2 0 0 1 15 6.5 V8" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/><rect x="3" y="12.5" width="18" height="2.4" fill="#F3FAFC"/></svg>WORK</span>
-          <h3>メンズ地下アイドル運営を手伝う</h3>
+          <span class="tag tag-creative"><svg class="tag-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="9.5" r="1.3" fill="currentColor"/><circle cx="14.5" cy="8.5" r="1.3" fill="currentColor"/><circle cx="16" cy="13.5" r="1.3" fill="currentColor"/><path d="M8 14 a3 3 0 0 0 5.5 1.6" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>CREATIVE PROJECTS</span>
+          <h3>メンズ地下アイドル運営をサポート</h3>
           <div class="role">運営サポート</div>
           <p class="note">メンズ地下アイドルグループの運営を約1年9ヶ月サポート。現場運営やファン対応など、アイドル/エンタメ現場への理解を深める。</p>
         </div>
@@ -1152,22 +1195,22 @@
         </div>
       </div>
 
-      <div class="t-item reveal is-milestone" data-type="MILESTONE">
+      <div class="t-item reveal is-creative" data-type="CREATIVE">
         <div class="t-date">2018.09<span class="t-age">31歳</span></div>
-        <div class="t-dot t-dot-milestone"><svg viewBox="0 0 24 24"><path d="M12 2 L14.2 9.2 L21 12 L14.2 14.8 L12 22 L9.8 14.8 L3 12 L9.8 9.2 Z" fill="#fff"/></svg></div>
+        <div class="t-dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="9" cy="9.5" r="1.4" fill="#fff"/><circle cx="14.5" cy="8.5" r="1.4" fill="#fff"/><circle cx="16" cy="13.5" r="1.4" fill="#fff"/><path d="M8 14 a3 3 0 0 0 5.5 1.6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div>
         <div class="t-body">
-          <span class="tag tag-milestone"><svg class="tag-icon" viewBox="0 0 24 24"><path d="M12 2 L14.2 9.2 L21 12 L14.2 14.8 L12 22 L9.8 14.8 L3 12 L9.8 9.2 Z" fill="currentColor"/></svg>MILESTONE</span>
+          <span class="tag tag-creative"><svg class="tag-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="9.5" r="1.3" fill="currentColor"/><circle cx="14.5" cy="8.5" r="1.3" fill="currentColor"/><circle cx="16" cy="13.5" r="1.3" fill="currentColor"/><path d="M8 14 a3 3 0 0 0 5.5 1.6" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>CREATIVE PROJECTS</span>
           <h3>自主イベントでLIVE100人集客を達成</h3>
           <p class="note">自主企画のライブイベントにて100人の集客を達成。イベント企画者としての手応えをつかみ、その後のインフルエンサー音楽イベント企画へとつながっていく。</p>
         </div>
       </div>
 
-      <div class="t-item reveal" data-type="WORK">
+      <div class="t-item reveal is-creative" data-type="CREATIVE">
         <div class="t-date">2019.09<br>–2020.03<span class="t-age">32歳</span></div>
-        <div class="t-dot"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2" fill="#fff"/><path d="M9 8 V6.5 A2 2 0 0 1 11 4.5 H13 A2 2 0 0 1 15 6.5 V8" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/></svg></div>
+        <div class="t-dot"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="#fff" stroke-width="1.8"/><circle cx="9" cy="9.5" r="1.4" fill="#fff"/><circle cx="14.5" cy="8.5" r="1.4" fill="#fff"/><circle cx="16" cy="13.5" r="1.4" fill="#fff"/><path d="M8 14 a3 3 0 0 0 5.5 1.6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/></svg></div>
         <div class="t-body">
-          <span class="tag"><svg class="tag-icon" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2" fill="currentColor"/><path d="M9 8 V6.5 A2 2 0 0 1 11 4.5 H13 A2 2 0 0 1 15 6.5 V8" stroke="currentColor" stroke-width="1.6" fill="none" stroke-linecap="round"/><rect x="3" y="12.5" width="18" height="2.4" fill="#F3FAFC"/></svg>WORK</span>
-          <h3>インフルエンサーグループの企画・撮影を手伝う</h3>
+          <span class="tag tag-creative"><svg class="tag-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="9" cy="9.5" r="1.3" fill="currentColor"/><circle cx="14.5" cy="8.5" r="1.3" fill="currentColor"/><circle cx="16" cy="13.5" r="1.3" fill="currentColor"/><path d="M8 14 a3 3 0 0 0 5.5 1.6" stroke="currentColor" stroke-width="1.4" fill="none" stroke-linecap="round"/></svg>CREATIVE PROJECTS</span>
+          <h3>インフルエンサーグループの企画・撮影をサポート</h3>
           <div class="role">企画立案 / 撮影サポート</div>
           <p class="note">インフルエンサーグループのコンテンツ企画や撮影をサポート。企画から撮影までの一連の流れを経験し、動画制作への関心を深める。</p>
         </div>
